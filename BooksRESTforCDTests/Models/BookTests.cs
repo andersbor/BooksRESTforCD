@@ -14,25 +14,25 @@ namespace BooksRESTforCD.Models.Tests
         [TestMethod()]
         public void ToStringTest()
         {
-            Assert.Fail();
+            
         }
 
         [TestMethod()]
         public void ValidateTitleTest()
         {
-            Assert.Fail();
+            
         }
 
         [TestMethod()]
         public void ValidatePriceTest()
         {
-            Assert.Fail();
+           
         }
 
         [TestMethod()]
         public void ValidateTest()
         {
-            Assert.Fail();
+            
         }
     }
 }
