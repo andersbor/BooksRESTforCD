@@ -16,9 +16,9 @@ namespace BooksRESTforCD.Controllers
 
         // GET: api/<BooksController>
         [HttpGet]
-        public IEnumerable<Book> Get()
+        public IEnumerable<Book> Get(string? sort_by=null, int? price_below=null)
         {
-            return repo.GetAll();
+            return repo.GetAll(sort_by, price_below);
         }
 
         // GET api/<BooksController>/5

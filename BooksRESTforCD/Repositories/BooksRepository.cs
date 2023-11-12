@@ -9,13 +9,33 @@ namespace BooksRESTforCD.Repositories
 
         public BooksRepository()
         {
-            books.Add(new Book { Id = nextId++, Title = "Book1", Price = 100 });
-            books.Add(new Book { Id = nextId++, Title = "Book2", Price = 200 });
-            books.Add(new Book { Id = nextId++, Title = "Book3", Price = 300 });
+            books.Add(new Book { Id = nextId++, Title = "ABC", Price = 100 });
+            books.Add(new Book { Id = nextId++, Title = "C#", Price = 20 });
+            books.Add(new Book { Id = nextId++, Title = "Benjamin", Price = 300 });
         }
-        public IEnumerable<Book> GetAll()
+        public IEnumerable<Book> GetAll(string? sortBy=null, int? priceBelow=null)
         {
-            return new List<Book>(books);
+            List<Book> b = new(books);
+            if (priceBelow != null)
+            {
+                b.RemoveAll(book => book.Price > priceBelow);
+            }
+            if (sortBy != null)
+            {
+                switch (sortBy)
+                {
+                    case "title":
+                        b.Sort((b1, b2) => b1.Title.CompareTo(b2.Title));
+                        break;
+                    case "price":
+                        b.Sort((b1, b2) => b1.Price.CompareTo(b2.Price));
+                        break;
+                    // default:
+                        // do nothing
+                        //throw new ArgumentException("Invalid sort_by value: " + sortBy);
+                }
+            }
+            return b;
         }
 
         public Book? GetById(int id)
