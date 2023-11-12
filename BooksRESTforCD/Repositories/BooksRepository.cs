@@ -13,9 +13,13 @@ namespace BooksRESTforCD.Repositories
             books.Add(new Book { Id = nextId++, Title = "C#", Price = 20 });
             books.Add(new Book { Id = nextId++, Title = "Benjamin", Price = 300 });
         }
-        public IEnumerable<Book> GetAll(string? sortBy=null)
+        public IEnumerable<Book> GetAll(string? sortBy=null, int? priceBelow=null)
         {
             List<Book> b = new(books);
+            if (priceBelow != null)
+            {
+                b.RemoveAll(book => book.Price > priceBelow);
+            }
             if (sortBy != null)
             {
                 switch (sortBy)

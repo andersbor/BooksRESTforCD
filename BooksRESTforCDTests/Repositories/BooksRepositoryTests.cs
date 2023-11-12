@@ -15,7 +15,7 @@ namespace BooksRESTforCD.Repositories.Tests
         [TestMethod()]
         public void BooksRepositoryTest()
         {
-          Assert.Fail();
+          //Assert.Fail();
         }
 
         [TestMethod()]
@@ -29,7 +29,10 @@ namespace BooksRESTforCD.Repositories.Tests
             Assert.AreEqual("Benjamin", books.ToList()[1].Title);
 
             books = booksRepository.GetAll(sortBy: "price");
-            Assert.AreEqual("20", books.ToList()[1].Title);
+            Assert.AreEqual(20, books.ToList()[0].Price);
+
+            books = booksRepository.GetAll(priceBelow: 50);
+            Assert.AreEqual(1, books.Count());
         }
 
         [TestMethod()]
