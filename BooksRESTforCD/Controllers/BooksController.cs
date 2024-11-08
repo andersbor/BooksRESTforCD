@@ -16,7 +16,7 @@ namespace BooksRESTforCD.Controllers
 
         // GET: api/<BooksController>
         [HttpGet]
-        public IEnumerable<Book> Get(string? sort_by=null, int? price_below=null)
+        public IEnumerable<Book> Get(string? sort_by = null, int? price_below = null)
         {
             return repo.GetAll(sort_by, price_below);
         }
@@ -40,12 +40,16 @@ namespace BooksRESTforCD.Controllers
             try
             {
                 Book newBook = repo.Add(book);
-                return CreatedAtRoute("GetWeatherForecast", new { id = newBook.Id }, newBook);
+                //return Ok(newBook);
+                return Created(
+                    Url.ActionContext.HttpContext.Request.Path + "/" + newBook.Id,
+                    newBook);
             }
-            catch (ArgumentException e)
+            catch (ArgumentException ex)
             {
-                return BadRequest(e.Message);
+                return BadRequest(ex.Message);
             }
+
         }
 
         // PUT api/<BooksController>/5
