@@ -6,10 +6,11 @@
         public string? Title { get; set; }
         public int Price { get; set; }
         public string? Publisher { get; set; }
+        public int Year { get; set; }
 
         public override string ToString()
         {
-            return $"{Id} {Title} {Price}";
+            return $"{Id} {Title} {Price} {Year}";
         }
 
         public void ValidateTitle()
